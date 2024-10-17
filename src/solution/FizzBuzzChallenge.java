@@ -1,5 +1,3 @@
-package amalitech;
-
 import java.util.Scanner;
 
 public class FizzBuzzChallenge {
