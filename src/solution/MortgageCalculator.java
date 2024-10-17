@@ -10,7 +10,7 @@ import java.util.Scanner;
  * 4. Monthly Payment: $?
  */
 
-public class LoanCalculator {
+public class MortgageCalculator {
     private static final byte MONTHS_IN_A_YEAR = 12;
     private static final byte PERCENTAGE = 100;
     private static final int MIN_LOAN_AMOUNT = 1000;
