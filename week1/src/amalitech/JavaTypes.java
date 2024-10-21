@@ -85,7 +85,7 @@ public class JavaTypes {
 
         //Slide #8: Primitive Types Vs Reference Types - Let's Understand String
         //Consider An example of a String Object. Pay attention to the message:"New String Is Redundant!! Warning"
-        String message=new String("Hello World");
+        String message= "Hello World";
         System.out.println(message);
 
         //Slide #9: Primitive Types Vs Reference Types - Let's Understand String
@@ -375,7 +375,7 @@ public class JavaTypes {
         String myLastName=scannerThree.nextLine();
         System.out.println("My Lastname: "+myLastName);
 
-        System.out.println("");
+        System.out.println();
 
 
 
