@@ -17,6 +17,9 @@ public class StudentManager implements ManagerOps {
     public void addStudent(String name) {
         if (studentCount == MAX_SIZE) {
             System.out.println("Error: Student List is full! You cannot add more students");
+        } else if (!validName(name)) {
+            System.out.println();
+            //System.out.println("Error: Invalid name. Please enter a valid name");
         } else {
             students[studentCount] = name;
             studentCount++;
@@ -90,17 +93,20 @@ public class StudentManager implements ManagerOps {
     }
 
     public static boolean validName(String name) {
-        try {
-            for (char c : name.toCharArray()) {
-                if (!Character.isLetter(c) && c != ' ') {
-                    throw new IllegalArgumentException("Name contains invalid characters.");
-                }
-            }
-            return true;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        if (name == null || name.trim().isEmpty()) {
+            System.out.println("Error: Name cannot be empty.");
             return false;
         }
+
+        for (char c : name.toCharArray()) {
+            if (!Character.isLetter(c) && c != ' ') {
+                System.out.println();
+                System.out.println("Error: Name contains invalid characters.");
+                return false;
+            }
+        }
+        return true;
     }
+
 
 }
