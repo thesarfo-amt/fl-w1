@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class TaskScheduler {
-    private Queue<String> taskQueue;
+    private final Queue<String> taskQueue;
 
     public TaskScheduler() {
         taskQueue = new LinkedList<>();
@@ -15,14 +15,13 @@ public class TaskScheduler {
         System.out.println("Task added: " + task);
     }
 
-    public String completeTask() {
+    public void completeTask() {
         if (taskQueue.isEmpty()) {
             System.out.println("No tasks to complete.");
-            return null;
+            return;
         }
         String completedTask = taskQueue.poll();
         System.out.println("Completed task: " + completedTask);
-        return completedTask;
     }
 
     public void displayTasks() {
