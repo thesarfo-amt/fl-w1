@@ -1,5 +1,6 @@
 package dev.thesarfo.stack;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -7,40 +8,24 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Stack stack = new Stack(10);
 
-//        stack.push(10);
-//        stack.push(20);
-//
-//        System.out.print("Current Stack: ");
-//        stack.printStack();
-//
-//        //int result = stack.evaluate('+');
-//        //System.out.println("Result of addition: " + result);
-//
-//        stack.push(50);
-//        stack.push(30);
-//        result = stack.evaluate('-');
-//        System.out.println("Result of subtraction: " + result);
-//
-//        System.out.print("Current Stack after operations: ");
-//        stack.printStack();
-
         while (true) {
-            System.out.println("\nEnter first number: ");
-            int num1 = scanner.nextInt();
-            stack.push(num1);
-
-            System.out.println("Enter second number: ");
-            int num2 = scanner.nextInt();
-            stack.push(num2);
-
-            System.out.println("Enter an operator (+, -, *, /): ");
-            char operator = scanner.next().charAt(0);
-
             try {
+                System.out.println("\n--- Stack Calculator ---");
+
+                int num1 = getValidIntegerInput(scanner);
+                stack.push(num1);
+
+                int num2 = getValidIntegerInput(scanner);
+                stack.push(num2);
+
+                char operator = getValidOperator(scanner);
+
                 int result = stack.evaluate(operator);
                 System.out.println("Result: " + result);
 
-                System.out.println("Do you want to perform another operation? (yes/no): ");
+                stack.printStack();
+
+                System.out.print("Do you want to perform another operation? (yes/no): ");
                 String response = scanner.next();
                 if (response.equalsIgnoreCase("no")) {
                     break;
@@ -52,4 +37,29 @@ public class Main {
 
         scanner.close();
     }
+
+    private static int getValidIntegerInput(Scanner scanner) {
+        while (true) {
+            System.out.print("Enter a number: ");
+            try {
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                scanner.next();
+            }
+        }
+    }
+
+    private static char getValidOperator(Scanner scanner) {
+        while (true) {
+            System.out.print("Enter an operator (+, -, *, /): ");
+            char operator = scanner.next().charAt(0);
+            if (operator == '+' || operator == '-' || operator == '*' || operator == '/') {
+                return operator;
+            } else {
+                System.out.println("Invalid operator. Please enter one of (+, -, *, /).");
+            }
+        }
+    }
 }
+

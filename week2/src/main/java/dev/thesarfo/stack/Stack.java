@@ -6,7 +6,7 @@ public class Stack {
     private int top;
     private int capacity;
 
-    Stack(int size) {
+    public Stack(int size) {
         arr = new int[size];
         capacity = size;
         top = -1;
@@ -14,8 +14,7 @@ public class Stack {
 
     public void push(int x) {
         if (isFull()) {
-            System.out.println("Stack is full - Exiting Program");
-            System.exit(1);
+            throw new RuntimeException("Stack is full - Cannot push " + x);
         }
         System.out.println("Inserting " + x + " into stack");
         arr[++top] = x;
@@ -23,8 +22,7 @@ public class Stack {
 
     public int pop() {
         if (isEmpty()) {
-            System.out.println("STACK EMPTY");
-            System.exit(1);
+            throw new RuntimeException("Stack is empty - Cannot pop");
         }
         return arr[top--];
     }
@@ -33,15 +31,20 @@ public class Stack {
         return top + 1;
     }
 
-    public Boolean isEmpty() {
+    public boolean isEmpty() {
         return top == -1;
     }
 
-    public Boolean isFull() {
+    public boolean isFull() {
         return top == capacity - 1;
     }
 
     public void printStack() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty.");
+            return;
+        }
+        System.out.print("Stack: ");
         for (int i = 0; i <= top; i++) {
             System.out.print(arr[i] + " ");
         }
@@ -75,17 +78,27 @@ public class Stack {
         int operand2 = pop();
         int operand1 = pop();
 
+        int result;
         switch (operator) {
             case '+':
-                return add(operand1, operand2);
+                result = add(operand1, operand2);
+                break;
             case '-':
-                return subtract(operand1, operand2);
+                result = subtract(operand1, operand2);
+                break;
             case '*':
-                return multiply(operand1, operand2);
+                result = multiply(operand1, operand2);
+                break;
             case '/':
-                return divide(operand1, operand2);
+                result = divide(operand1, operand2);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid operator");
         }
+
+        push(result);
+
+        return result;
     }
+
 }
