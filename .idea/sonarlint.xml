@@ -3,6 +3,7 @@
   <component name="SonarLintProjectSettings">
     <option name="moduleMapping">
       <map>
+        <entry key="week2-labs" value="week2" />
         <entry key="week2-spring-basics" value="spring-basics" />
       </map>
     </option>
